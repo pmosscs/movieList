@@ -19,15 +19,22 @@ inputField.value = ("");
 
 const deleteMovie = (event) => {
     event.target.parentNode.remove();
-    message.textContent = 'Movie Deleted!';
+    message.textContent = `${event.target.previousSibling.textContent} Deleted!`;
+    revealMessage();
 }
 document.querySelector('form').addEventListener('submit', (addMovie));
 
 function crossOffMovie(event) {
     event.target.classList.toggle('checked');
     if (event.target.classList.contains('checked')) {
-        message.textContent = 'Movie has been crossed off!';
+        message.textContent = `${event.target.textContent} has been crossed off!`;
     } else {
-        message.textContent = 'Movie added again!';
+        message.textContent = `${event.target.textContent} added again!`;
     }
+    revealMessage();
+}
+
+function revealMessage() {
+    message.classList.remove('hide');
+    setTimeout(() => message.classList.add('hide'), 1000);
 }
